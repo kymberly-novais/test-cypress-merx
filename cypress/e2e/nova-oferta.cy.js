@@ -1,18 +1,15 @@
 /// <reference types="cypress" />
 
+//const { entries } = require("cypress/types/lodash")
+
+import Logon from '../support/pages/Logon'
+
 describe('Nova oferta', () => {
     
     beforeEach('Realizando login',() => {
-    
-      cy.visit('https://www.preprod.backoffice.merx.tech/')
-      cy.get('.MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type(Cypress.env('user_name'))
-      cy.get('.sc-pjIrY > .MuiButtonBase-root > .MuiButton-label').should('be.visible').click()
-      cy.get(':nth-child(3) > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type(Cypress.env('user_password'))
-      cy.get('.MuiGrid-root > .MuiButtonBase-root > .MuiButton-label').should('be.visible').click()
-      cy.get('.sc-fzoNJl').should('be.visible').log('Login successful')
-      cy.get('.sc-fzqNqU').should('be.visible').click().log('Acessando Menu')
-      cy.get(':nth-child(2) > .MuiListItemText-root > .MuiTypography-root').should('be.visible').click()
-      cy.get('.MuiButton-contained > .MuiButton-label').should('be.visible').click()
+    Logon.acessarSite();
+    Logon.preecherLogin();
+    Logon.acessarNovaOferta();    
     })
   
     it('Oferta - Fixação depósito', () => {
@@ -128,7 +125,7 @@ describe('Nova oferta', () => {
         cy.get('[flexdirection="column"] > :nth-child(2) > .MuiButtonBase-root > .MuiButton-label').click()
         cy.get(':nth-child(2) > .MuiCollapse-wrapper > .MuiCollapse-wrapperInner > .jss56 > .jss76 > #notistack-snackbar').invoke('O valor do volume minimo e maximo devem ser iguais!')
     })
-    it.only('Oferta - Compra', () => {
+    it('Oferta - Compra', () => {
         cy.get('#mui-component-select-type').click()
         cy.get('[data-value="COMPRA"]').click()
         cy.get('#mui-component-select-product_id').click()
@@ -155,8 +152,10 @@ describe('Nova oferta', () => {
         cy.get('#mui-component-select-state').click()
         cy.get('[data-value="SP"]').click()
         //cy.cidade do frete.click
-        cy.get('#combo-box').type('Campinas')
-        cy.get('.MuiAutocomplete-root > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root').click()
+        //cy.get('#combo-box').type('Campinas')
+        //cy.get('[aria-activesdecendant="combo-box-option-0"]').click([enter])
+        //cy.get('#combo-box').click()
+        //cy.get('.MuiAutocomplete-root > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root').click()
         //
         cy.get('[style="margin-top: 5px;"] > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type('1200')
         cy.get('#mui-component-select-delivery_place').click()
@@ -168,6 +167,7 @@ describe('Nova oferta', () => {
         cy.get('.MuiDialogActions-root > :nth-child(2) > .MuiButton-label').click()
         cy.get('[rows="5"]').type('O gerente enlouqueceu, leve todos pague nada')
         cy.get('.MuiGrid-justify-xs-flex-end > .MuiButtonBase-root').click()
+        cy.get('.MuiButton-label').click()
 
 
 
