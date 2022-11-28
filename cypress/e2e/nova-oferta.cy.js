@@ -12,15 +12,15 @@ describe('Nova oferta', () => {
     Logon.acessarNovaOferta();    
     })
   
-    it('Oferta - Fixação depósito', () => {
-        cy.get('#mui-component-select-type').click()
-        cy.get('[data-value="FIXACAO_DEPOSITO"]').click()
-        cy.get('#mui-component-select-product_id').click()
-        cy.get('.MuiList-root > [tabindex="0"]').click()
-        cy.get('#mui-component-select-modality_id').click()
-        cy.get('[data-value="0e3f84c8-7f87-478c-be6b-638d14f60fae"]').click()
-        cy.get(':nth-child(3) > :nth-child(1) > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type('50200')
-        cy.get('#mui-component-select-unit_of_measurement_id').click()
+    it.only('Oferta - Fixação depósito', () => {
+        cy.get('#mui-component-select-type').click() // tipo de compra
+        cy.get('[data-value="FIXACAO_DEPOSITO"]').click() //selecionar tipo de compra
+        cy.get('#mui-component-select-product_id').click() // tipo de produto
+        cy.get('.MuiList-root > [tabindex="0"]').click() // selecionar produto
+        cy.get('#mui-component-select-modality_id').click() // tipo de modalidade
+        cy.get('[data-value="0e3f84c8-7f87-478c-be6b-638d14f60fae"]').click()//selecionar tipo de modalidade
+        cy.get(':nth-child(3) > :nth-child(1) > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type('50200')//informar preço
+        cy.get('#mui-component-select-unit_of_measurement_id').click()//tipo de unidade de medida
         cy.get('.MuiList-root > .MuiButtonBase-root').click()
         cy.get(':nth-child(4) > :nth-child(1) > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type('6000')
         cy.get(':nth-child(2) > .sc-qXhiz > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type('6000')
